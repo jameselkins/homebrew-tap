@@ -9,9 +9,10 @@ class RemoteImagePaste < Formula
   head "https://github.com/jameselkins/remote-image-paste.git", branch: "main"
 
   depends_on "pngpaste"
+  depends_on "python@3.13"
 
   def install
-    virtualenv_install_with_resources
+    virtualenv_install_with_resources using: "python@3.13"
   end
 
   # Uploads need pngpaste, but the Service runs from a login-free context that
@@ -29,6 +30,9 @@ class RemoteImagePaste < Formula
   end
 
   test do
-    assert_match "requires macOS", shell_output("#{bin}/remote-image-paste --matches-title x 2>&1", 1)
+    # --version proves the console script and its virtualenv wrapper work.
+    assert_match version.to_s, shell_output("#{bin}/remote-image-paste --version")
+    # A missing config must fail cleanly rather than traceback or hang.
+    assert_match "failed", shell_output("#{bin}/remote-image-paste --matches-title anything 2>&1", 1)
   end
 end
