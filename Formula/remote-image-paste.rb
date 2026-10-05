@@ -4,7 +4,7 @@ class RemoteImagePaste < Formula
   desc "Paste clipboard images into remote OpenCode sessions over SSH from macOS Ghostty"
   homepage "https://github.com/jameselkins/remote-image-paste"
   url "https://github.com/jameselkins/remote-image-paste/archive/refs/tags/v0.2.0.tar.gz"
-  version "0.2.0"
+  sha256 "37bf597af375e283b64fb4c57e38e230562207cc0b39b766f1ef60f413e87378"
   license "MIT"
   head "https://github.com/jameselkins/remote-image-paste.git", branch: "main"
 
